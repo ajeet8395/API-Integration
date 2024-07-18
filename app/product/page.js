@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProductData } from "@/redux/productSlice";
 import StarRating from "@/components/starRating";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ export default function Products() {
                             {tag}{index < item.tags.length - 1 && ","}
                         </div>
                     ))}
-                </div>
+                </div>0
                 <div className="flex gap-1 pb-2 text-base">
                     {Object.entries(item.dimensions).map(([key, value], index) => (
                         <div key={index}>
@@ -95,6 +96,23 @@ export default function Products() {
                       {showAllReview[item.id] ? 'Show less' : 'Read more'}
                     </button>
                   )}
+              </div>
+              <div>
+                <div>{Object.entries(item.meta).map(([key, value], index) => (
+                  <div key={index}>
+                    <strong>{key}:</strong> {value}{index < Object.keys(item.meta).length - 1 && ","}
+                  </div>
+                ))}</div>
+              </div>
+              <div className="flex justify-center">
+                <Image
+                    src={item.images[0]}
+                    alt={item.title}
+                    width={100}
+                    height={100}
+                    layout="responsive"
+                    className="max-w-52 w-full h-auto"
+                />
               </div>
             </div>
           ))}
