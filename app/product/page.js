@@ -14,7 +14,7 @@ export default function Products() {
     dispatch(fetchProductData());
   };
 
-  const toggleShowAllReviews = (productId) => {
+  const toggleShowAllReviews = (productId) => { 
     setShowAllReview((prevState) => ({
       ...prevState,
       [productId]: !prevState[productId],
